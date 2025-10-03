@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>NailArt Studio - Profesjonalny salon paznokci | Manicure & Stylizacja</title>
+  <meta name="description" content="NailArt Studio - profesjonalny salon paznokci w Warszawie. Manicure, stylizacja paznokci, żel, hybryda, nail art. Umów wizytę już dziś!">
+  <meta name="keywords" content="salon paznokci, manicure, stylizacja paznokci, hybryda, żel, nail art, paznokcie, Warszawa, salon urody">
+  <meta name="author" content="Anna Nowak - NailArt Studio">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph (Facebook, LinkedIn) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="NailArt Studio - Profesjonalny salon paznokci">
+  <meta property="og:description" content="Profesjonalny salon paznokci w Warszawie. Manicure, hybryda, żel, nail art. Piękne paznokcie to nasza pasja!">
+  <meta property="og:image" content="https://twoja-domena.pl/images/salon-paznokci-og.jpg">
+  <meta property="og:url" content="https://twoja-domena.pl">
+  <meta property="og:site_name" content="NailArt Studio">
+  <meta property="og:locale" content="pl_PL">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@nailart_studio">
+  <meta name="twitter:creator" content="@nailart_studio">
+  <meta name="twitter:title" content="NailArt Studio - Salon paznokci">
+  <meta name="twitter:description" content="Profesjonalny salon paznokci. Piękne paznokcie to nasza pasja!">
+  <meta name="twitter:image" content="https://twoja-domena.pl/images/salon-twitter.jpg">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BeautySalon",
+    "name": "NailArt Studio",
+    "description": "Profesjonalny salon paznokci specjalizujący się w manicure, stylizacji paznokci i nail art",
+    "url": "https://twoja-domena.pl",
+    "image": "https://twoja-domena.pl/images/salon.jpg",
+    "telephone": "+48123456789",
+    "email": "kontakt@nailart-studio.pl",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "ul. Piękna 15",
+      "addressLocality": "Warszawa",
+      "postalCode": "00-001",
+      "addressCountry": "PL"
+    },
+    "openingHours": [
+      "Mo-Fr 09:00-18:00",
+      "Sa 10:00-16:00"
+    ],
+    "priceRange": "$$",
+    "sameAs": [
+      "https://facebook.com/nailart.studio",
+      "https://instagram.com/nailart_studio"
+    ],
+    "serviceType": [
+      "Manicure",
+      "Stylizacja paznokci",
+      "Hybryda",
+      "Żel",
+      "Nail Art",
+      "Pedicure"
+    ]
+  }
+  </script>
+  
+  <!-- Preconnect dla szybszego ładowania -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header role="banner">
+    <nav role="navigation" aria-label="Główna nawigacja">
+      <div class="logo">
+        <h1>💅 NailArt Studio</h1>
+      </div>
+      
+      <!-- HAMBURGER BUTTON - NOWY -->
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <!-- NAV MENU - ZMODYFIKOWANE -->
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#home" aria-label="Przejdź do strony głównej">Home</a></li>
+        <li><a href="#about" aria-label="Przejdź do sekcji o nas">O nas</a></li>
+        <li><a href="#services" aria-label="Przejdź do usług">Usługi</a></li>
+        <li><a href="#contact" aria-label="Przejdź do kontaktu">Kontakt</a></li>
+      </ul>
+      
+      <!-- THEME TOGGLE - BEZ ZMIAN -->
+      <div class="theme-toggle">
+        <input type="checkbox" id="theme-checkbox" class="theme-checkbox" aria-label="Przełącznik trybu ciemnego">
+        <label for="theme-checkbox" class="theme-label">
+          <div class="theme-slider"></div>
+          <span class="theme-icon sun" aria-hidden="true">☀️</span>
+          <span class="theme-icon moon" aria-hidden="true">🌙</span>
+        </label>
+      </div>
+    </nav>
+  </header>
+
+  <main role="main">
+    <section id="home" aria-labelledby="home-heading">
+      <div class="hero">
+        <h2 id="home-heading">Piękne paznokcie to nasza pasja!</h2>
+        <p>Profesjonalny salon paznokci w sercu Warszawy. Stylizacja, manicure, nail art - wszystko na najwyższym poziomie.</p>
+        <button class="cta-button" aria-label="Umów wizytę">Umów wizytę 💅</button>
+      </div>
+    </section>
+
+    <section id="about" aria-labelledby="about-heading">
+      <div class="container">
+        <h2 id="about-heading">O NailArt Studio</h2>
+        <div class="about-content">
+          <div class="about-text">
+            <p>Jesteśmy profesjonalnym salonem paznokci z 5-letnim doświadczeniem w branży beauty. Nasza pasja to tworzenie pięknych, zdrowych paznokci dla każdej kobiety.</p>
+            
+            <h3>Nasze specjalności:</h3>
+            <ul role="list">
+              <li>💅 Manicure klasyczny</li>
+              <li>✨ Stylizacja hybrydą</li>
+              <li>🎨 Nail Art & wzorki</li>
+              <li>💎 Żel z dodatkami</li>
+              <li>🦶 Pedicure</li>
+              <li>🌸 Przedłużanie paznokci</li>
+            </ul>
+
+            <p><strong>Dlaczego my?</strong></p>
+            <p>Używamy tylko najlepszych produktów renomowanych marek. Dbamy o higienę i bezpieczeństwo. Każdy klient otrzymuje indywidualne podejście i profesjonalną obsługę.</p>
+          </div>
+          <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400&h=300&fit=crop&auto=format" alt="Wnętrze salonu NailArt Studio z stanowiskami do manicure" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" aria-labelledby="services-heading">
+      <div class="container">
+        <h2 id="services-heading">Nasze Usługi</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">💅</div>
+            <h3>Manicure klasyczny</h3>
+            <p>Profesjonalny manicure z pielęgnacją skórek i formowaniem paznokci</p>
+            <div class="price">od 40 zł</div>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon">✨</div>
+            <h3>Hybryda</h3>
+            <p>Trwała stylizacja hybrydą w wybranym kolorze, utrzymuje się do 3 tygodni</p>
+            <div class="price">od 60 zł</div>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon">🎨</div>
+            <h3>Nail Art</h3>
+            <p>Artystyczne wzorki, zdobienia, ombre - niech Twoje paznokcie będą wyjątkowe</p>
+            <div class="price">od 80 zł</div>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon">💎</div>
+            <h3>Żel z dodatkami</h3>
+            <p>Stylizacja żelem z brokatem, glitterem lub innymi dodatkami</p>
+            <div class="price">od 70 zł</div>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon">🦶</div>
+            <h3>Pedicure</h3>
+            <p>Kompleksowa pielęgnacja stóp i paznokci u nóg</p>
+            <div class="price">od 80 zł</div>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon">🌸</div>
+            <h3>Przedłużanie</h3>
+            <p>Przedłużanie paznokci żelem lub akrylem, naturalne i eleganckie</p>
+            <div class="price">od 100 zł</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <h2 id="contact-heading">Kontakt & Rezerwacje</h2>
+        <div class="contact-content">
+          <div class="contact-info">
+            <h3>Umów wizytę już dziś!</h3>
+            <p>Zapraszamy do naszego salonu w centrum Warszawy. Rezerwacje telefoniczne lub przez formularz.</p>
+            
+            <div class="contact-item">
+              <strong>📞 Telefon:</strong>
+              <a href="tel:+48123456789" aria-label="Zadzwoń do salonu">+48 123 456 789</a>
+            </div>
+            <div class="contact-item">
+              <strong>📧 Email:</strong>
+              <a href="mailto:kontakt@nailart-studio.pl" aria-label="Wyślij email do salonu">kontakt@nailart-studio.pl</a>
+            </div>
+            <div class="contact-item">
+              <strong>📍 Adres:</strong>
+              <span>ul. Piękna 15, 00-001 Warszawa</span>
+            </div>
+            <div class="contact-item">
+              <strong>🕒 Godziny otwarcia:</strong>
+              <span>Pon-Pt: 9:00-18:00, Sob: 10:00-16:00</span>
+            </div>
+            <div class="contact-item">
+              <strong>📱 Social Media:</strong>
+              <div class="social-links">
+                <a href="https://facebook.com/nailart.studio" target="_blank" rel="noopener noreferrer">Facebook</a>
+                <a href="https://instagram.com/nailart_studio" target="_blank" rel="noopener noreferrer">Instagram</a>
+              </div>
+            </div>
+          </div>
+
+          <form class="contact-form" role="form" aria-label="Formularz rezerwacji">
+            <h3>Zarezerwuj wizytę</h3>
+            <input type="text" placeholder="Twoje imię i nazwisko" required aria-label="Wpisz swoje imię i nazwisko">
+            <input type="email" placeholder="Twój email" required aria-label="Wpisz swój adres email">
+            <input type="tel" placeholder="Numer telefonu" required aria-label="Wpisz swój numer telefonu">
+            <select required aria-label="Wybierz usługę">
+              <option value="">Wybierz usługę</option>
+              <option value="manicure">Manicure klasyczny</option>
+              <option value="hybryda">Hybryda</option>
+              <option value="nail-art">Nail Art</option>
+              <option value="zel">Żel z dodatkami</option>
+              <option value="pedicure">Pedicure</option>
+              <option value="przedluzanie">Przedłużanie paznokci</option>
+            </select>
+            <textarea placeholder="Dodatkowe informacje, preferowany termin..." rows="4" aria-label="Wpisz dodatkowe informacje"></textarea>
+            <button type="submit" aria-label="Wyślij formularz rezerwacji">Zarezerwuj wizytę 💅</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>💅 NailArt Studio</h4>
+          <p>Profesjonalny salon paznokci w Warszawie. Tworzymy piękne paznokcie z pasją i precyzją.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Usługi</h4>
+          <ul>
+            <li><a href="#services">Manicure</a></li>
+            <li><a href="#services">Hybryda</a></li>
+            <li><a href="#services">Nail Art</a></li>
+            <li><a href="#services">Pedicure</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Kontakt</h4>
+          <p>📞 +48 123 456 789</p>
+          <p>📧 kontakt@nailart-studio.pl</p>
+          <p>📍 ul. Piękna 15, Warszawa</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 NailArt Studio. Wszelkie prawa zastrzeżone.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
