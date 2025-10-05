@@ -529,51 +529,60 @@ function isValidEmail(email) {
     return emailRegex.test(email);
 }
 
+// ===== WYŚWIETLANIE KOMUNIKATÓW POD SOCIAL MEDIA =====
 function showFormMessage(message, type) {
-    // Usuń poprzednie komunikaty
-    const existingMessage = document.querySelector('.form-message');
-    if (existingMessage) {
-        existingMessage.remove();
+    // Usuń poprzednie komunikaty z formularza
+    const existingFormMessage = document.querySelector('.form-message');
+    if (existingFormMessage) {
+        existingFormMessage.remove();
     }
     
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `form-message ${type}`;
-    messageDiv.style.cssText = `
-        padding: 1.5rem;
-        margin: 1rem 0;
-        border-radius: 12px;
-        font-weight: 600;
-        font-size: 1rem;
-        animation: slideIn 0.4s ease-out;
-        position: relative;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        border-left: 5px solid;
-        white-space: pre-line;
-    `;
+    // Kontener pod social media
+    const confirmationContainer = document.getElementById('booking-confirmation');
     
-    if (type === 'success') {
-        messageDiv.style.background = 'linear-gradient(135deg, #d4edda, #c3e6cb)';
-        messageDiv.style.color = '#155724';
-        messageDiv.style.borderLeftColor = '#28a745';
-    } else {
-        messageDiv.style.background = 'linear-gradient(135deg, #f8d7da, #f5c6cb)';
-        messageDiv.style.color = '#721c24';
-        messageDiv.style.borderLeftColor = '#dc3545';
+    if (!confirmationContainer) {
+        console.error('Nie znaleziono kontenera booking-confirmation');
+        return;
     }
     
-    messageDiv.textContent = message;
+    // Usuń poprzedni komunikat
+    confirmationContainer.innerHTML = '';
+    confirmationContainer.style.display = 'none';
     
-    const form = document.querySelector('.contact-form');
-    form.insertBefore(messageDiv, form.firstChild);
+    // Ustaw nowy komunikat
+    confirmationContainer.textContent = message;
+    confirmationContainer.className = `booking-confirmation ${type}`;
     
-    // Auto remove po 8 sekundach dla success, 5 dla error
-    const timeout = type === 'success' ? 8000 : 5000;
+    // Pokaż z animacją
     setTimeout(() => {
-        if (messageDiv.parentNode) {
-            messageDiv.style.animation = 'fadeOut 0.3s ease-out';
-            setTimeout(() => messageDiv.remove(), 300);
+        confirmationContainer.style.display = 'block';
+    }, 100);
+    
+    // Scroll do komunikatu (smooth)
+    setTimeout(() => {
+        confirmationContainer.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
+    }, 200);
+    
+    // Auto remove z lepszą animacją
+    const timeout = type === 'success' ? 8000 : 6000;
+    setTimeout(() => {
+        if (confirmationContainer.parentNode) {
+            confirmationContainer.style.animation = 'fadeOutUp 0.5s ease-out';
+            setTimeout(() => {
+                confirmationContainer.style.display = 'none';
+                confirmationContainer.style.animation = '';
+            }, 500);
         }
     }, timeout);
+    
+    // Dodaj ikonę w zależności od typu
+    const icon = type === 'success' ? '✅ ' : '⚠️ ';
+    confirmationContainer.textContent = icon + message;
+    
+    console.log(`📢 Komunikat wyświetlony pod social media: ${type}`);
 }
 
 // ===== ANIMACJE SCROLL =====
@@ -983,4 +992,176 @@ document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('calendar-days')) {
         window.bookingCalendar = new BookingCalendar();
     }
+});
+
+// ===== ANIMACJA STATYSTYK SALONU =====
+class SalonStatsAnimator {
+    constructor() {
+        this.statsSection = document.querySelector('.salon-stats');
+        this.statNumbers = document.querySelectorAll('.stat-number');
+        this.animated = false;
+        
+        if (this.statsSection && this.statNumbers.length > 0) {
+            this.init();
+        }
+    }
+    
+    init() {
+        console.log('📊 Inicjalizacja animacji statystyk...');
+        
+        // Przygotuj dane statystyk
+        this.stats = [
+            { element: this.statNumbers[0], target: 500, suffix: '+', duration: 2000 },
+            { element: this.statNumbers[1], target: 98, suffix: '%', duration: 2500 },
+            { element: this.statNumbers[2], target: 3, suffix: '', duration: 1500 },
+            { element: this.statNumbers[3], target: 150, suffix: '+', duration: 2200 }
+        ];
+        
+        // Resetuj liczby na 0
+        this.statNumbers.forEach(stat => {
+            stat.textContent = '0';
+        });
+        
+        // Obserwuj kiedy sekcja wchodzi do widoku
+        this.observeStats();
+    }
+    
+    observeStats() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !this.animated) {
+                    console.log('📈 Rozpoczynam animację statystyk');
+                    this.animateStats();
+                    this.animated = true;
+                }
+            });
+        }, {
+            threshold: 0.3,
+            rootMargin: '0px 0px -100px 0px'
+        });
+        
+        observer.observe(this.statsSection);
+    }
+    
+    animateStats() {
+        this.stats.forEach((stat, index) => {
+            // Delay dla każdej statystyki
+            setTimeout(() => {
+                this.animateNumber(stat.element, 0, stat.target, stat.duration, stat.suffix);
+                
+                // Dodaj efekt pulsowania
+                stat.element.style.animation = 'statPulse 0.6s ease-in-out';
+                
+                // Usuń pulsowanie po zakończeniu
+                setTimeout(() => {
+                    stat.element.style.animation = 'floating 3s ease-in-out infinite';
+                    stat.element.style.animationDelay = `${index * 0.5}s`;
+                }, 600);
+            }, index * 300);
+        });
+    }
+    
+    animateNumber(element, start, end, duration, suffix = '') {
+        const startTime = performance.now();
+        const range = end - start;
+        
+        const updateNumber = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Easing function dla płynniejszej animacji
+            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+            
+            const current = Math.floor(start + range * easeOutQuart);
+            element.textContent = current + suffix;
+            
+            // Dodaj efekt świecenia podczas animacji
+            if (progress < 1) {
+                element.style.textShadow = `0 0 20px rgba(52, 152, 219, ${0.8 * progress})`;
+                requestAnimationFrame(updateNumber);
+            } else {
+                // Finalna wartość
+                element.textContent = end + suffix;
+                element.style.textShadow = '0 0 15px rgba(52, 152, 219, 0.5)';
+                
+                // Usuń świecenie po 2 sekundach
+                setTimeout(() => {
+                    element.style.textShadow = 'none';
+                }, 2000);
+                
+                console.log(`✅ Animacja statystyki ${end}${suffix} zakończona`);
+            }
+        };
+        
+        requestAnimationFrame(updateNumber);
+    }
+}
+
+// Dodaj CSS dla animacji pulsowania statystyk
+function addStatsCSS() {
+    const css = `
+        @keyframes statPulse {
+            0% { 
+                transform: scale(1); 
+                color: var(--primary-color);
+            }
+            50% { 
+                transform: scale(1.2); 
+                color: var(--accent-color);
+                text-shadow: 0 0 20px rgba(231, 76, 60, 0.6);
+            }
+            100% { 
+                transform: scale(1); 
+                color: var(--primary-color);
+                text-shadow: none;
+            }
+        }
+        
+        .stat-number {
+            transition: all 0.3s ease;
+            font-variant-numeric: tabular-nums;
+        }
+        
+        .stat-item:hover .stat-number {
+            animation: statPulse 0.6s ease-in-out !important;
+            transform: scale(1.1) !important;
+        }
+        
+        /* Efekt liczenia */
+        .counting {
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Dark mode */
+        [data-theme="dark"] .stat-number {
+            text-shadow: 0 0 10px rgba(100, 181, 246, 0.3);
+        }
+        
+        [data-theme="dark"] .counting {
+            background: linear-gradient(45deg, var(--primary-color), #ff7043);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    `;
+    
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = css;
+    document.head.appendChild(styleSheet);
+}
+
+// Inicjalizacja w DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('📱 DOM załadowany - inicjalizuję funkcje...');
+    
+    // ...existing code...
+    
+    // Dodaj animacje statystyk
+    addStatsCSS();
+    window.salonStats = new SalonStatsAnimator();
+    
+    console.log('✅ Wszystkie funkcje zainicjalizowane!');
 });
