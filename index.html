@@ -325,7 +325,7 @@
             </div>
             <div class="contact-item">
               <strong>📧 Email:</strong>
-              <a href="mailto:kontakt@nailart-studio.pl" aria-label="Wyślij email do salonu">kontakt@nailart-studio.pl</a>
+              <a href="mailto:krzysztofglicner@gmail.com" aria-label="Wyślij email do salonu">krzysztofglicner@gmail.com</a>
             </div>
             <div class="contact-item">
               <strong>📍 Adres:</strong>
@@ -344,23 +344,63 @@
             </div>
           </div>
 
+          <!-- Zastąp cały formularz kontaktowy tym krótszym -->
           <form class="contact-form" role="form" aria-label="Formularz rezerwacji">
-            <h3>Zarezerwuj wizytę</h3>
-            <input type="text" placeholder="Twoje imię i nazwisko" required aria-label="Wpisz swoje imię i nazwisko">
-            <input type="email" placeholder="Twój email" required aria-label="Wpisz swój adres email">
-            <input type="tel" placeholder="Numer telefonu" required aria-label="Wpisz swój numer telefonu">
-            <select required aria-label="Wybierz usługę">
-              <option value="">Wybierz usługę</option>
-              <option value="manicure">Manicure klasyczny</option>
-              <option value="hybryda">Hybryda</option>
-              <option value="nail-art">Nail Art</option>
-              <option value="zel">Żel z dodatkami</option>
-              <option value="pedicure">Pedicure</option>
-              <option value="przedluzanie">Przedłużanie paznokci</option>
-              <input type="datetime-local" placeholder="Preferowany termin" aria-label="Wybierz preferowany termin">
+            <h3>📞 Szybka rezerwacja</h3>
+            
+            <div class="form-row">
+              <input type="text" placeholder="Imię i nazwisko *" required id="contact-name">
+              <input type="tel" placeholder="Telefon *" required id="contact-phone">
+            </div>
+            
+            <input type="email" placeholder="Email *" required id="contact-email">
+            
+            <select required id="contact-service">
+              <option value="">💅 Wybierz usługę *</option>
+              <option value="manicure">Manicure klasyczny (40-50 zł)</option>
+              <option value="hybryda">Hybryda (60-80 zł)</option>
+              <option value="nail-art">Nail Art (80-120 zł)</option>
+              <option value="zel">Żel z dodatkami (70-100 zł)</option>
+              <option value="pedicure">Pedicure (80-100 zł)</option>
+              <option value="przedluzanie">Przedłużanie (100-150 zł)</option>
             </select>
-            <textarea placeholder="Dodatkowe informacje, preferowany termin..." rows="4" aria-label="Wpisz dodatkowe informacje"></textarea>
-            <button type="submit" aria-label="Wyślij formularz rezerwacji">Zarezerwuj wizytę 💅</button>
+
+            <!-- KOMPAKTOWY KALENDARZ -->
+            <div class="quick-calendar">
+              <label>📅 Wybierz termin *</label>
+              <div class="calendar-compact">
+                <div class="calendar-header-mini">
+                  <button type="button" id="prev-week">‹</button>
+                  <span id="week-range">Ten tydzień</span>
+                  <button type="button" id="next-week">›</button>
+                </div>
+                <div class="week-days" id="week-days">
+                  <!-- Dni tygodnia generowane przez JS -->
+                </div>
+              </div>
+            </div>
+
+            <!-- KOMPAKTOWE GODZINY -->
+            <div class="quick-times">
+              <label>⏰ Godzina *</label>
+              <div class="times-grid" id="times-grid">
+                <button type="button" class="time-mini" data-time="09:00">09:00</button>
+                <button type="button" class="time-mini" data-time="11:00">11:00</button>
+                <button type="button" class="time-mini" data-time="13:00">13:00</button>
+                <button type="button" class="time-mini" data-time="15:00">15:00</button>
+              </div>
+            </div>
+
+            <!-- MINI PODSUMOWANIE -->
+            <div class="booking-mini-summary" id="mini-summary" style="display:none;">
+              <strong id="summary-text">📋 Wybierz usługę, termin i godzinę</strong>
+            </div>
+            
+            <textarea placeholder="Dodatkowe uwagi (opcjonalne)" rows="2" id="contact-notes"></textarea>
+            
+            <button type="submit" class="submit-btn-compact">
+              💌 Wyślij rezerwację
+            </button>
           </form>
         </div>
       </div>
